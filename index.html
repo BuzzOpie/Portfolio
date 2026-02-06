@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akshit Saxena | Embedded Systems Engineer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-card: #1e293b;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --border: #334155;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+      background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--accent) 0%, #0ea5e9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero .tagline {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero .bio {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+    }
+
+    .hero .links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg-primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--text-primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50%;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--bg-card);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .skill-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .skill-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 1rem;
+    }
+
+    .project-header h3 {
+      font-size: 1.3rem;
+      color: var(--text-primary);
+    }
+
+    .project-meta {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .project-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .project-card li {
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+      color: var(--text-secondary);
+    }
+
+    .project-card li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      padding: 0.3rem 0.8rem;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent);
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    /* Experience */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      border-left: 2px solid var(--border);
+    }
+
+    .timeline-item {
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.5rem;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      border: 3px solid var(--bg-primary);
+    }
+
+    .timeline-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-item .position {
+      color: var(--accent);
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-item .date {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-item ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .timeline-item li {
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+      color: var(--text-secondary);
+    }
+
+    .timeline-item li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* Achievements */
+    .achievements-list {
+      list-style: none;
+    }
+
+    .achievements-list li {
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+      background: var(--bg-card);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      color: var(--text-secondary);
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .contact-card {
+      background: var(--bg-card);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .contact-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .contact-card i {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .contact-card a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .contact-card a:hover {
+      color: var(--accent);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        gap: 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero .tagline {
+        font-size: 1.1rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="logo">Akshit Saxena</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Akshit Saxena</h1>
+    <p class="tagline">Embedded Systems & Firmware Engineer</p>
+    <p class="bio">
+      M.Sc. Electronic Information Engineering student at Trinity College Dublin with expertise in embedded systems, FPGA design, IoT solutions, and deep learning. Passionate about building robust hardware-software integrated systems.
+    </p>
+    <div class="links">
+      <a href="mailto:saxenaak@tcd.ie" class="btn btn-primary">
+        <i class="fas fa-envelope"></i> Get In Touch
+      </a>
+      <a href="Resume_Latex.pdf" class="btn btn-secondary" download>
+        <i class="fas fa-download"></i> Download CV
+      </a>
+      <a href="https://www.linkedin.com/in/akshit-saxena" class="btn btn-secondary" target="_blank">
+        <i class="fab fa-linkedin"></i> LinkedIn
+      </a>
+      <a href="https://github.com/akshitsaxena" class="btn btn-secondary" target="_blank">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="container">
+    <h2 class="section-title">About Me</h2>
+    <p style="color: var(--text-secondary); font-size: 1.05rem; max-width: 900px;">
+      Currently pursuing M.Sc. in Electronic Information Engineering at Trinity College Dublin, I specialize in embedded systems, FPGA design, and IoT solutions. With a strong foundation in C programming, microcontroller development (ESP32, Arduino, Raspberry Pi), and hardware integration, I've led multiple projects from concept to deployment. My work spans drone-based computer vision systems, cancer detection ML pipelines, and industrial IoT solutions for DRDO. I bring hands-on experience in Verilog, VLSI design flows, and real-time embedded systems with a passion for solving complex hardware-software challenges.
+    </p>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="container">
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3><i class="fas fa-code"></i> Programming</h3>
+        <p>Python, C, Embedded C, Verilog, JAVA, R, Assembly (ASM), HTML</p>
+      </div>
+      <div class="skill-card">
+        <h3><i class="fas fa-microchip"></i> Embedded Systems</h3>
+        <p>ESP32, NodeMCU, Arduino, Raspberry Pi, sensors, RFID, Zigbee, LoRaWAN, drone integration</p>
+      </div>
+      <div class="skill-card">
+        <h3><i class="fas fa-tools"></i> EDA & Software</h3>
+        <p>Cadence Virtuoso, ModelSim, MATLAB, Vivado, LTspice, Arduino IDE, PyCharm, Keil uVision</p>
+      </div>
+      <div class="skill-card">
+        <h3><i class="fas fa-brain"></i> VLSI & FPGA</h3>
+        <p>Digital design, RTL-to-netlist flow, timing constraints, synthesis, placement, CTS, routing, STA</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="container">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-grid">
+      
+      <div class="project-card">
+        <div class="project-header">
+          <h3>Integrated System Design on Pynq-Z2 FPGA</h3>
+        </div>
+        <div class="project-meta">Trinity College Dublin | Sept 2025 – Dec 2025</div>
+        <ul>
+          <li>Implemented digital design flow on Pynq-Z2 FPGA board with RTL design in Verilog</li>
+          <li>Developed and verified DUTs with testbenches, timing constraints, and post-implementation analysis</li>
+          <li>Analyzed utilization, timing, and power reports to understand PPA trade-offs</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Verilog</span>
+          <span class="tag">FPGA</span>
+          <span class="tag">Vivado</span>
+          <span class="tag">Digital Design</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <h3>Drone-Assisted Farm Monitoring with IoT</h3>
+        </div>
+        <div class="project-meta">VIT Vellore | Dec 2024 – Apr 2025 | Team size: 2</div>
+        <ul>
+          <li>Combined YOLOv8-based inference with drone sensing and ground IoT data for multi-sensor pipeline</li>
+          <li>Tuned compute and communication paths for real-time operation</li>
+          <li>Balanced performance with power consumption and hardware resource limits</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">YOLOv8</span>
+          <span class="tag">IoT</span>
+          <span class="tag">Drones</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <h3>Deep Learning for Early-Stage Cancer Detection</h3>
+        </div>
+        <div class="project-meta">VIT Vellore | Aug 2024 – Dec 2024 | Team size: 3</div>
+        <ul>
+          <li>Implemented CNN-based feature extraction (ResNet50, VGG16, DenseNet121) and ML classifiers</li>
+          <li>Applied data preprocessing, augmentation, and class balancing for robustness</li>
+          <li>Achieved 80% ensemble accuracy with focus on compute efficiency and hardware acceleration</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Deep Learning</span>
+          <span class="tag">CNN</span>
+          <span class="tag">Python</span>
+          <span class="tag">ResNet</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <h3>Communication Range Extension (DRDO)</h3>
+        </div>
+        <div class="project-meta">DRDO RCI, Hyderabad | Aug 2023 – Nov 2023 | Solo project</div>
+        <ul>
+          <li>Configured XBee modules and Zigbee mesh networks for long-range multi-hop communication</li>
+          <li>Gained experience with timing margins, noise, and signal integrity at system level</li>
+          <li>Integrated sensors for real-time monitoring and emergency communication</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Zigbee</span>
+          <span class="tag">XBee</span>
+          <span class="tag">Embedded C</span>
+          <span class="tag">IoT</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="container">
+    <h2 class="section-title">Experience & Education</h2>
+    
+    <h3 style="color: var(--accent); margin-top: 2rem; margin-bottom: 1rem;">Internships</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>India Space Lab (ISL)</h3>
+        <div class="position">Technical Training Program</div>
+        <div class="date">Jun 2025 – Jul 2025 | Online</div>
+        <ul>
+          <li>Completed training in advanced drone technology, small satellite systems, and remote sensing</li>
+          <li>Gained understanding of high-reliability system requirements and fault tolerance</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <h3>DRDO-RCI</h3>
+        <div class="position">Industrial Project Intern</div>
+        <div class="date">Aug 2023 – Nov 2023 | Hyderabad, India</div>
+        <ul>
+          <li>Developed communication solutions using Zigbee mesh configuration</li>
+          <li>Focused on link robustness, timing, and reliability under constrained resources</li>
+          <li>Executed hardware testing and verification cycles similar to signoff loops</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Clowak Innovations LLP</h3>
+        <div class="position">Electronics Intern</div>
+        <div class="date">Apr 2023 – Jul 2023 | Vellore, India</div>
+        <ul>
+          <li>Developed IoT systems using ESP32, RFID, and Firebase with embedded C</li>
+          <li>Verified system behavior through iterative hardware testing</li>
+          <li>Delivered reliable electronics under schedule and resource constraints</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="color: var(--accent); margin-top: 3rem; margin-bottom: 1rem;">Education</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>Trinity College Dublin</h3>
+        <div class="position">Master of Science in Electronic Information Engineering</div>
+        <div class="date">Sept 2025 – Sept 2026 | Dublin, Ireland</div>
+        <ul>
+          <li>Coursework: Integrated System Design (Pynq-Z2 FPGA), VLSI Design, Spatial Audio</li>
+          <li>Deep Learning, Cyber-Physical Systems and Control, Speech Technology</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Vellore Institute of Technology</h3>
+        <div class="position">Bachelor of Technology in Electronics and Communications Engineering</div>
+        <div class="date">Aug 2021 – Aug 2025 | Vellore, India | CGPA: 9.05/10</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section id="achievements" class="container">
+    <h2 class="section-title">Achievements</h2>
+    <ul class="achievements-list">
+      <li><strong>Published Journal Paper:</strong> "Deep Learning-Driven IoT Solution for Smart Tomato Farming" in Nature Scientific Reports (2025)</li>
+      <li><strong>Winner:</strong> International Space Drone Competition (ISDC) 2025, BITS Pilani – Team RotorFPV</li>
+      <li><strong>Runner-up:</strong> AeroRush 2025 drone competition at NIT Trichy</li>
+      <li><strong>Semi-Finalist:</strong> AICTE ARM Inventors Challenge 2023 (Top 80 teams in India)</li>
+      <li><strong>Certificate of Merit:</strong> 100% in Computer Science (10th), 99% in Computer Science (12th) – Hartmann College</li>
+    </ul>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="container">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <i class="fas fa-envelope"></i>
+        <p><a href="mailto:saxenaak@tcd.ie">saxenaak@tcd.ie</a></p>
+      </div>
+      <div class="contact-card">
+        <i class="fas fa-envelope"></i>
+        <p><a href="mailto:vnaman035@gmail.com">vnaman035@gmail.com</a></p>
+      </div>
+      <div class="contact-card">
+        <i class="fas fa-phone"></i>
+        <p><a href="tel:+353858102272">+353 85 810 2272</a></p>
+      </div>
+      <div class="contact-card">
+        <i class="fab fa-linkedin"></i>
+        <p><a href="https://www.linkedin.com/in/akshit-saxena" target="_blank">LinkedIn Profile</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Akshit Saxena. Built with passion for embedded systems.</p>
+  </footer>
+
+</body>
+</html>
