@@ -1,0 +1,3 @@
+[submodule "Resumes"]
+	path = Resumes
+	url = https://github.com/BuzzOpie/resumes-private.git
